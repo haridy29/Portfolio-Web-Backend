@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "articles")
+@Table(name = "article")
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class Article {
     private String title;
     @Column(name = "article_blog")
     private String blog;
-
+    //TODO ADD IMAGE
     public Article(String title, String blog) {
         this.title = title;
         this.blog = blog;

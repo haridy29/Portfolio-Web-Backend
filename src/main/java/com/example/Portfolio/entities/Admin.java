@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "admins")
+@Table(name = "admin")
 public class Admin implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +22,7 @@ public class Admin implements UserDetails {
     private String username;
     @Column(name = "password")
     private String password;
+
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
