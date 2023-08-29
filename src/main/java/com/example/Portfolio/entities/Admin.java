@@ -1,5 +1,6 @@
 package com.example.Portfolio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,8 +21,15 @@ public class Admin implements UserDetails {
     private Long id;
     @Column(name = "username")
     private String username;
+
     @Column(name = "password")
+    @JsonIgnore
     private String password;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id")
+    private Profile personal_data;
+
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)

@@ -16,7 +16,11 @@ public class Article {
     private String title;
     @Column(name = "article_blog")
     private String blog;
-    //TODO ADD IMAGE
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Profile profile;
+
+    //TODO ADD IMAGE Logo
     public Article(String title, String blog) {
         this.title = title;
         this.blog = blog;

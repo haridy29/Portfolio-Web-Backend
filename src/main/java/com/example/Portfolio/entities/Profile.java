@@ -6,20 +6,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "person")
-public class Person {
+@Table(name = "profile")
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "fname", nullable = false)
+    private String firstName;
+
+    @Column(name = "lname", nullable = false)
+    private String lastName;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -30,19 +32,22 @@ public class Person {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @OneToMany(mappedBy = "owner",fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Link> links = new HashSet<>();
 
-    @OneToMany(mappedBy = "owner",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Project> projects = new HashSet<>();
+    @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Article> articles = new HashSet<>();
 
     //TODO ADD IMAGE
-    public Person(String name, String email, String phone, String address, Set<Link> links, Set<Project> projects) {
-        this.name = name;
+    public Profile(String firstName, String lastName, String email, String phone, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.links = links;
-        this.projects = projects;
+
     }
 }

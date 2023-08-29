@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @AllArgsConstructor
@@ -23,8 +21,8 @@ public class Project {
     private String blog;
     @Column(name = "projectx_order", unique = true)
     private Integer order;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Person owner;
+    private Profile profile;
     //TODO ADD IMAGE
 }

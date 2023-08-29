@@ -2,8 +2,6 @@ package com.example.Portfolio.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Data
@@ -20,7 +18,7 @@ public class Link {
     private String link;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Person owner;
+    private Profile profile;
 
     //TODO ADD IMAGE
 }
