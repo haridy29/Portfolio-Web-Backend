@@ -1,5 +1,6 @@
 package com.example.Portfolio.controllers;
 
+import com.example.Portfolio.dtos.ArticleDTO;
 import com.example.Portfolio.dtos.ProfileDTO;
 import com.example.Portfolio.services.ArticleService;
 import com.example.Portfolio.services.ProfileService;
@@ -33,4 +34,9 @@ public class AdminController {
         return profileService.getProfile();
     }
 
+    @PostMapping("/articles")
+    public ResponseEntity<String> AddArticle(Principal principal, @Valid @RequestBody ArticleDTO article) {
+        return articleService.addArticle(principal, article);
+
+    }
 }
