@@ -23,6 +23,7 @@ public class AdminController {
         return ResponseEntity.ok("Hello from secured endpoint.");
     }
 
+    @PostMapping("/profile")
     public ResponseEntity<String> updateProfile(Principal principal, @Valid @RequestBody ProfileDTO profile) {
         return profileService.updateProfile(principal, profile);
     }
