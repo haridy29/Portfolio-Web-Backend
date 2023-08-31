@@ -1,13 +1,14 @@
 package com.example.Portfolio.services;
 
-import com.example.Portfolio.dtos.ArticleDTO;
 import com.example.Portfolio.dtos.ProjectDTO;
 import com.example.Portfolio.entities.Project;
+import com.example.Portfolio.exceptions.NotFoundException;
 import com.example.Portfolio.repositories.ProjectRepo;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -56,6 +57,18 @@ public class ProjectServiceImpl implements ProjectService {
         project.setOrder(projectDTO.getOrder());
         projectRepo.save(project);
         return ResponseEntity.ok("Success");
+    }
+
+    @Override
+    public List<Project> getAllArticles() {
+        return projectRepo.findAll();
+    }
+
+    @Override
+    public Project getProjectById(Long projectId) throws NotFoundException {
+        Project project = projectRepo.findById(projectId, Project.class);
+        if (project == null) throw new NotFoundException("The project not found");
+        return project;
     }
 
 }

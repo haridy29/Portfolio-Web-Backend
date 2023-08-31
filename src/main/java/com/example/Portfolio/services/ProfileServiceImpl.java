@@ -1,17 +1,14 @@
 package com.example.Portfolio.services;
 
 import com.example.Portfolio.dtos.ProfileDTO;
-import com.example.Portfolio.entities.Admin;
 import com.example.Portfolio.entities.Profile;
 import com.example.Portfolio.repositories.AdminRepo;
 import com.example.Portfolio.repositories.ProfileRepo;
 import com.example.Portfolio.views.ProfileView;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -24,12 +21,13 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public ResponseEntity<String> updateProfile(ProfileDTO profile) {
-        Profile myProfile = profileRepo.findAll().get(0);
-
-        if (myProfile == null) {
+        List<Profile> profiles = profileRepo.findAll();
+        Profile myProfile;
+        if (profiles.isEmpty()) {
             myProfile = new Profile(profile.getFirstName(), profile.getLastName(), profile.getEmail(), profile.getPhone(), profile.getAddress());
 
         } else {
+            myProfile = profiles.get(0);
             myProfile.setFirstName(profile.getFirstName());
             myProfile.setFirstName(profile.getLastName());
             myProfile.setEmail(profile.getEmail());

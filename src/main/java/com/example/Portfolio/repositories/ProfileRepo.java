@@ -1,7 +1,6 @@
 package com.example.Portfolio.repositories;
 
 import com.example.Portfolio.entities.Profile;
-import com.example.Portfolio.views.ProfileView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

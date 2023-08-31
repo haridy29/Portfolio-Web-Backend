@@ -1,15 +1,14 @@
 package com.example.Portfolio.services;
 
 import com.example.Portfolio.dtos.ArticleDTO;
-import com.example.Portfolio.entities.Admin;
 import com.example.Portfolio.entities.Article;
-import com.example.Portfolio.repositories.AdminRepo;
+import com.example.Portfolio.exceptions.NotFoundException;
 import com.example.Portfolio.repositories.ArticleRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -45,6 +44,18 @@ public class ArticleServiceImpl implements ArticleService {
         article.setBlog(articleDto.getBlog());
         articleRepo.save(article);
         return ResponseEntity.ok("Success");
+    }
+
+    @Override
+    public List<Article> getAllArticles() {
+        return articleRepo.findAll();
+    }
+
+    @Override
+    public Article getArticleById(Long id) throws NotFoundException {
+        Article article = articleRepo.findById(id, Article.class);
+        if (article == null) throw new NotFoundException("The article not found");
+        return article;
     }
 
 
