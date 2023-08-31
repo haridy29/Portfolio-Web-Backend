@@ -7,5 +7,9 @@ import org.springframework.http.ResponseEntity;
 import java.security.Principal;
 
 public interface ArticleService {
-    public ResponseEntity<String> addArticle(Principal principal, ArticleDTO article);
+    public ResponseEntity<String> addArticle(ArticleDTO article);
+
+    ResponseEntity<String> deleteArticle(Long articleId);
+
+    ResponseEntity<String> editArticle(Long articleId, ArticleDTO article);
 }

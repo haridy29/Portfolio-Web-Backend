@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticleRepo extends JpaRepository<Article, Long> {
     boolean existsByTitle(String title);
+
+    <T> T findById(Long id, Class<T> type);
 }

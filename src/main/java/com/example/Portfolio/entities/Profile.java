@@ -33,13 +33,6 @@ public class Profile {
     private String address;
 
 
-    @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Link> links = new HashSet<>();
-
-    @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Project> projects = new HashSet<>();
-    @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Article> articles = new HashSet<>();
 
     //TODO ADD IMAGE
     public Profile(String firstName, String lastName, String email, String phone, String address) {

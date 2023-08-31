@@ -6,6 +6,7 @@ import com.example.Portfolio.services.ArticleService;
 import com.example.Portfolio.services.ProfileService;
 import com.example.Portfolio.views.ProfileView;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +20,6 @@ public class AdminController {
     private final ArticleService articleService;
     private final ProfileService profileService;
 
-    @GetMapping("/hello")
-    public ResponseEntity<String> sayHello() {
-        return ResponseEntity.ok("Hello from secured endpoint.");
-    }
 
     @PostMapping("/profile")
     public ResponseEntity<String> updateProfile(Principal principal, @Valid @RequestBody ProfileDTO profile) {
@@ -35,8 +32,18 @@ public class AdminController {
     }
 
     @PostMapping("/articles")
-    public ResponseEntity<String> AddArticle(Principal principal, @Valid @RequestBody ArticleDTO article) {
-        return articleService.addArticle(principal, article);
+    public ResponseEntity<String> AddArticle(@Valid @RequestBody ArticleDTO article) {
+        return articleService.addArticle(article);
 
+    }
+
+    @DeleteMapping("/articles/{id}")
+    public ResponseEntity<String> deleteArticle(@NotNull @PathVariable("id") Long articleId) {
+        return articleService.deleteArticle(articleId);
+    }
+
+    @PutMapping("/articles/{id}")
+    public ResponseEntity<String> editArticle(@NotNull @PathVariable("id") Long articleId, @Valid @RequestBody ArticleDTO article) {
+        return articleService.editArticle(articleId, article);
     }
 }

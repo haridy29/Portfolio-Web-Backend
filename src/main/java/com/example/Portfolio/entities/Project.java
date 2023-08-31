@@ -22,7 +22,6 @@ public class Project {
     @Column(name = "projectx_order", unique = true)
     private Integer order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Profile profile;
+
     //TODO ADD IMAGE
 }

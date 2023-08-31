@@ -17,8 +17,7 @@ public class Link {
     @Column(name = "link")
     private String link;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Profile profile;
+
 
     //TODO ADD IMAGE
 }
