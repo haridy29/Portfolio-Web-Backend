@@ -12,7 +12,7 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "article_title")
+    @Column(name = "article_title", unique = true)
     private String title;
     @Column(name = "article_blog")
     private String blog;
@@ -21,9 +21,10 @@ public class Article {
     private Profile profile;
 
     //TODO ADD IMAGE Logo
-    public Article(String title, String blog) {
+    public Article(String title, String blog, Profile profile) {
         this.title = title;
         this.blog = blog;
+        this.profile = profile;
     }
 
 
