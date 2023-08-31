@@ -26,11 +26,6 @@ public class Admin implements UserDetails {
     @JsonIgnore
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "profile_id")
-    private Profile personal_data;
-
-
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;

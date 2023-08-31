@@ -41,8 +41,8 @@ public class ArticleServiceImpl implements ArticleService {
         if (article == null) {
             return ResponseEntity.badRequest().body("Article not found");
         }
-        article.setTitle(article.getTitle());
-        article.setBlog(article.getBlog());
+        article.setTitle(articleDto.getTitle());
+        article.setBlog(articleDto.getBlog());
         articleRepo.save(article);
         return ResponseEntity.ok("Success");
     }

@@ -23,18 +23,20 @@ public class ProfileServiceImpl implements ProfileService {
 
 
     @Override
-    public ResponseEntity<String> updateProfile(Principal principal, ProfileDTO profile) {
-        Admin admin = adminRepo.findAdminByUsername(principal.getName()).get();
-        if (admin.getPersonal_data() == null) {
-            admin.setPersonal_data(new Profile(profile.getFirstName(), profile.getLastName(), profile.getEmail(), profile.getPhone(), profile.getAddress()));
+    public ResponseEntity<String> updateProfile(ProfileDTO profile) {
+        Profile myProfile = profileRepo.findAll().get(0);
+
+        if (myProfile == null) {
+            myProfile = new Profile(profile.getFirstName(), profile.getLastName(), profile.getEmail(), profile.getPhone(), profile.getAddress());
+
         } else {
-            admin.getPersonal_data().setFirstName(profile.getFirstName());
-            admin.getPersonal_data().setFirstName(profile.getLastName());
-            admin.getPersonal_data().setEmail(profile.getEmail());
-            admin.getPersonal_data().setAddress(profile.getAddress());
-            admin.getPersonal_data().setPhone(profile.getPhone());
+            myProfile.setFirstName(profile.getFirstName());
+            myProfile.setFirstName(profile.getLastName());
+            myProfile.setEmail(profile.getEmail());
+            myProfile.setAddress(profile.getAddress());
+            myProfile.setPhone(profile.getPhone());
         }
-        adminRepo.save(admin);
+        profileRepo.save(myProfile);
         return ResponseEntity.ok("Success");
     }
 

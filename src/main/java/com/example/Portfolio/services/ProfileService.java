@@ -9,7 +9,7 @@ import java.security.Principal;
 
 public interface ProfileService {
 
-    ResponseEntity<String> updateProfile(Principal principal, ProfileDTO profile);
+    ResponseEntity<String> updateProfile(ProfileDTO profile);
 
     ProfileView getProfile();
 }

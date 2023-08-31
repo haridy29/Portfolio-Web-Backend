@@ -17,7 +17,10 @@ public class Link {
     @Column(name = "link")
     private String link;
 
-
+    public Link(String siteName, String link) {
+        this.siteName = siteName;
+        this.link = link;
+    }
 
     //TODO ADD IMAGE
 }
