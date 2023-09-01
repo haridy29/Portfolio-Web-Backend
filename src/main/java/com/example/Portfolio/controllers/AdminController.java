@@ -4,10 +4,7 @@ import com.example.Portfolio.dtos.ArticleDTO;
 import com.example.Portfolio.dtos.LinkDTO;
 import com.example.Portfolio.dtos.ProfileDTO;
 import com.example.Portfolio.dtos.ProjectDTO;
-import com.example.Portfolio.services.ArticleService;
-import com.example.Portfolio.services.LinkService;
-import com.example.Portfolio.services.ProfileService;
-import com.example.Portfolio.services.ProjectService;
+import com.example.Portfolio.services.*;
 import com.example.Portfolio.views.ProfileView;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -15,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 
 @RestController
 @RequestMapping("/admin")

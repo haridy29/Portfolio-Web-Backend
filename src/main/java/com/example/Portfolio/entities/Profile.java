@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Data
@@ -31,8 +29,6 @@ public class Profile {
 
     @Column(name = "address", nullable = false)
     private String address;
-
-
 
     //TODO ADD IMAGE
     public Profile(String firstName, String lastName, String email, String phone, String address) {
